@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from users import views as user_views
+from genres.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',user_views.register, name="register"), 
+    path('home/',home_view,name="home"),
 ]
