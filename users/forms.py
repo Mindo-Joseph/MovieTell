@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=100, required = True, help_text='Required')
 
     class Meta:
         model = User
