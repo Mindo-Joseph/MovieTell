@@ -123,3 +123,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mindo.joseph.mj@gmail.com'
+EMAIL_HOST_PASSWORD = 'mannequine'
+EMAIL_PORT = 587
