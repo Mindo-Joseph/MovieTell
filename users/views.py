@@ -9,6 +9,7 @@ from django.utils.encoding import force_bytes, force_text
 from .token_generator import account_activation_token
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
+from django.contrib.auth import login, authenticate
 
 
 def register(request):
@@ -50,3 +51,19 @@ def register(request):
 
 
     return render(request, 'users/register.html', {'form':form})
+
+
+def activate_account(request,uidb64,token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError,OverflowError,ValueError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user,token):
+        user.is_active = True
+        user.save()
+        login(request,user)
+        return HttpResponse('Account activated Successfully')
+    else:
+        return HttpResponse('Account link is invalid')
+
