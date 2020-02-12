@@ -129,3 +129,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'mindo.joseph.mj@gmail.com'
 EMAIL_HOST_PASSWORD = 'Mann3quinema1l.'
 EMAIL_PORT = 587
+
+LOGIN_REDIRECT_URL = 'home'

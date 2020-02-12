@@ -36,6 +36,7 @@ def register(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(email_subject,message, to=[to_email])
             email.send()
+            
             return HttpResponse('We have sent you an email, please confirm your email address to complete registration')
 
             
@@ -65,7 +66,8 @@ def activate_account(request,uidb64,token):
         user.is_active = True
         user.save()
         login(request,user)
-        return HttpResponse('Account activated Successfully')
+        messages.success(request,f'Account created successfully')
+        return redirect('home')
         
     else:
         return HttpResponse('Account link is invalid')

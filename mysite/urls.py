@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path,include
 from users.views import register,activate_account
 from genres.views import home_view
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',register, name="register"), 
     path('home/',home_view,name="home"),
+    path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name="login"),
+    path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'),name="logout"),
     path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',activate_account,name='activate'),
    
 ]
